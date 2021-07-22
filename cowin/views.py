@@ -1,4 +1,4 @@
-from .forms import UserForm, FilterForm, UserFilterForm
+from .forms import UserFilterForm
 from django.contrib import messages
 from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
