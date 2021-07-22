@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-215%29ewp1-fqu$p$b_3*oqg5+!+t(k5-qyjnmr(#0p@z!3br7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cowin-vaccine-notifys.herokuapp.com']
 
 
 # Application definition
