@@ -25,27 +25,7 @@ class DistrictList(models.Model):
     def __str__(self) -> str:
         return self.district_name
 
-class Filter(models.Model):
-    vname = (('covaxin', 'Covaxin'),
-                         ('covishield', 'CoviShield'),
-                         ('sputnik', 'Sputnik'),)
-    age_limit = ((18,'18+'),(45,'45+'))
-    vtype = (('free','Free'),('paid','Paid'))
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.IntegerField(default=None,choices=age_limit)
-    vaccine_type = models.CharField(max_length=100,default=None, choices=vtype)
-    vaccine_name = models.CharField(max_length=100,default=None, choices = vname)
-    pincode = models.IntegerField(default=None)
-
-    @receiver(post_save, sender=User)
-    def create_user_filter(sender, instance, created, **kwargs):
-        if created:
-            Filter.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_filter(sender, instance, **kwargs):
-        instance.filter.save()
 
 class UserFilter(models.Model):
     email = models.EmailField()
