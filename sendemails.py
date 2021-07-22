@@ -16,6 +16,9 @@ from decouple import config
 # In-project resources
 from cowin.models import UserFilter
 
+#Time
+import time
+
 # Base URLS
 district_base_url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?"
 pincode_base_url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?"
@@ -114,5 +117,6 @@ def sendEmails(list_of_centers,receiver):
             return
     print('Not Delivered!')
 
-
+# Loops for mails
+print()
 collectResult(all_users)
