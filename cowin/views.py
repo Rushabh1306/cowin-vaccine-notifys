@@ -15,10 +15,14 @@ def indexView(request):
     data = None
     if request.method=='POST':
         print(request.POST)
-        if request.POST['pin']:
-            data = forPincode(int(request.POST['pin']))
-        if request.POST['dist']:
-            data = forDistrict(request.POST['dist'])
+        try:
+            if request.POST['pin']:
+                data = forPincode(int(request.POST['pin']))
+            if request.POST['dist']:
+                data = forDistrict(request.POST['dist'])
+        except:
+            context['data']=data
+
     context['data']=data
     print(data)
     return render(request,'index.html',context)

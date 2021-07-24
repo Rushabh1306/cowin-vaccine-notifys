@@ -30,7 +30,8 @@ all_users = UserFilter.objects.all()
 def collectResult(users):
     for user in users:
         list_of_centers = forPincode(user.pincode)
-        sendEmails(list_of_centers,user.email)
+        print(list_of_centers)
+        # sendEmails(list_of_centers,user.email)
 
 
 # os.environ['mail_sender']="rushabhsoni1306@gmail.com"

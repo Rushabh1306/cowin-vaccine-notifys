@@ -5,12 +5,12 @@ django.setup()
 import requests
 from cowin.models import StatesList
 state_base_url = "https://cdn-api.co-vin.in/api/v2/admin/location/states"
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+# headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 print(StatesList.objects.all())
-response = requests.get(state_base_url, headers=headers)
+response = requests.get(state_base_url)
 print(response)
-response = response.json()
-print(response)
+# response = response.json()
+# print(response)
 # for state in response['states']:
 #     print(state['state_id'])
 #     print(state['state_name'])
