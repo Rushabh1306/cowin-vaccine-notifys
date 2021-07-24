@@ -27,11 +27,76 @@ state_base_url = "https://cdn-api.co-vin.in/api/v2/admin/location/states"
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 all_users = UserFilter.objects.all()
 
+def age_category(age_limit,list_of_centers):
+    for center in list_of_centers:
+        if center['age']==age_limit:
+            continue
+        else:
+            list_of_centers.pop(0)
+
+    return list_of_centers
+
+
+
+def vaccine_name_category(vaccine_name,list_of_centers):
+    for center in list_of_centers:
+        if center['vaccine']==vaccine_name:
+            continue
+        else:
+            list_of_centers.pop(0)
+
+    return list_of_centers
+
+def vaccine_type_category(vaccine_type,list_of_centers):
+    for center in list_of_centers:
+        if center['fee_type']==vaccine_type:
+            continue
+        else:
+            list_of_centers.pop(0)
+
+    return list_of_centers
+
+def dose_availability(list_of_centers):
+    for center in list_of_centers:
+        if center['dose1'] > 0 or center['dose2'] > 0:
+            continue
+        else:
+            list_of_centers.pop(0)
+
+    return list_of_centers
+
+
+
 def collectResult(users):
     for user in users:
         list_of_centers = forPincode(user.pincode)
-        print(list_of_centers)
-        # sendEmails(list_of_centers,user.email)
+        if list_of_centers:
+            list_of_centers = dose_availability(list_of_centers)
+            print(user)
+            if user.age:
+                list_of_centers = age_category(user.age,list_of_centers)
+                if list_of_centers:
+                    pass
+                else:
+                    continue
+            if user.vaccine_type:
+                list_of_centers = vaccine_type_category(user.vaccine_type,list_of_centers)
+                if list_of_centers:
+                    pass
+                else:
+                    continue
+            if user.vaccine_name:
+                list_of_centers = vaccine_name_category(user.vaccine_name,list_of_centers)
+                if list_of_centers:
+                    pass
+                else:
+                    continue
+
+            print(list_of_centers)
+            print("----------------------------")
+            sendEmails(list_of_centers,user.email)
+        else:
+            continue
 
 
 # os.environ['mail_sender']="rushabhsoni1306@gmail.com"

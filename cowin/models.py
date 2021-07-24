@@ -29,8 +29,8 @@ class DistrictList(models.Model):
 
 class UserFilter(models.Model):
     email = models.EmailField()
-    vname = (('covaxin', 'Covaxin'),
-                         ('covishield', 'CoviShield'),
+    vname = (('COVAXIN', 'Covaxin'),
+                         ('COVISHIELD', 'CoviShield'),
                          ('sputnik', 'Sputnik'),)
     age_limit = ((18,'18+'),(45,'45+'))
     vtype = (('free','Free'),('paid','Paid'))
