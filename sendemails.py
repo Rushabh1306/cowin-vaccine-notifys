@@ -184,5 +184,8 @@ def sendEmails(list_of_centers,receiver):
     print('Not Delivered!')
 
 # Loops for mails
-print()
-collectResult(all_users)
+while(True):
+    time.sleep(10)
+    collectResult(all_users)
+
+
